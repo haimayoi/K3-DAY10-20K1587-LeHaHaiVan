@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+import html
 from pathlib import Path
 import re
 import time
@@ -34,9 +35,10 @@ class PaperRecord:
 
 
 def _clean_abstract(raw_abstract: str) -> str:
-    """Crossref abstracts are wrapped in JATS XML tags (e.g. <jats:p>...</jats:p>)."""
+    """Crossref abstracts are wrapped in JATS XML tags (e.g. <jats:p>...</jats:p>)
+    and contain HTML/XML entities (e.g. &lt;, &amp;) that need decoding."""
     without_tags = _JATS_TAG_RE.sub(" ", raw_abstract or "")
-    return normalize_whitespace(without_tags)
+    return normalize_whitespace(html.unescape(without_tags))
 
 
 def _extract_date(item: dict) -> str:
@@ -103,7 +105,7 @@ def parse_crossref_payload(payload: dict) -> list[PaperRecord]:
     for item in items:
         doi = normalize_whitespace(item.get("DOI", ""))
         titles = item.get("title") or []
-        title = normalize_whitespace(titles[0]) if titles else ""
+        title = normalize_whitespace(html.unescape(titles[0])) if titles else ""
 
         if not doi or not title:
             continue
