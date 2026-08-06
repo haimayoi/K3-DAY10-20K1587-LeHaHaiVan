@@ -25,6 +25,36 @@ Ghi chú từ `report/README.md`: với nhóm 3, khối tích hợp của **TV3 
 
 `src/retrieval/` (embeddings, index, agent, llm, qa) đã có code tham khảo — không ai "sở hữu" riêng, cả 3 người đều cần đọc hiểu để dùng, chủ yếu TV3 sẽ chạm vào nhiều nhất khi build baseline/corrupted/repaired index.
 
+## 1.5. Việc/code dùng chung — phải xong hoặc thống nhất trước khi tách việc
+
+### Đã implement sẵn, không ai cần code, nhưng cả 3 người phải đọc trước khi bắt đầu
+
+Kiểm tra bằng `grep -rlE "TODO\(student\)|NotImplementedError" src` — các file dưới đây **không** nằm trong kết quả, tức đã hoàn chỉnh:
+
+- `src/core/config.py` — `Settings`, `Paths`, `load_settings()`: định nghĩa **mọi** đường dẫn artifact (`data/raw`, `data/clean`, embeddings, eval, results, quality, reports) và cấu hình dùng chung (LLM provider, embedding model, tên collection `papers-baseline/-corrupted/-repaired`, `top_k`, `freshness_threshold_days`...). Đây là "hợp đồng" ràng buộc cả 3 vai trò — không ai được tự hardcode path hay tên collection khác đi.
+- `src/core/utils.py` — helper IO dùng chung (`write_json`, `read_json`, `write_csv`, `write_text`, `normalize_whitespace`...) — dùng xuyên suốt ingestion, cleaning, observability.
+- `src/retrieval/*` (`embeddings.py`, `index.py`, `llm.py`, `agent.py`, `qa.py`) và `src/evaluation/metrics.py` — code tham khảo đã hoàn chỉnh, chủ yếu TV3 dùng để build baseline/corrupted/repaired, nhưng cả nhóm nên đọc lướt ở CP0 để biết input/output trước khi cam kết schema.
+
+### Không phải code, nhưng phải thống nhất trước khi làm song song
+
+Theo `report/README.md` mục 6, trước khi tách việc cần chốt cùng nhau:
+
+| Contract | Nội dung cần thống nhất |
+|---|---|
+| Raw schema | Field của một paper record, cách xử lý field thiếu |
+| Clean schema | Tên cột, kiểu dữ liệu, quy tắc loại bỏ/dedupe |
+| Document identity | Cách tạo và giữ ổn định `paper_id` |
+| Evaluation set | Schema câu hỏi, ground truth, `ground_truth_doc_ids` |
+| Artifact paths | Dùng đúng `src/core/config.py`, không tự đặt path khác |
+| Metrics | Cùng tên metric, cùng evaluation set cho cả 3 trạng thái |
+| Repair | Repair lại từ nguồn nào, xác minh bằng gì |
+
+Bỏ qua bước này là nguyên nhân phổ biến nhất khiến TV2 viết test set trỏ tới `paper_id` không khớp với output cleaning của TV1.
+
+### Điểm nghẽn thật sự trong code (critical path)
+
+`src/ingestion/crossref.py` (TV1) là file **duy nhất phải xong trước** thì phần còn lại mới chạy được: `cleaning.py` cần raw records, `testset.py` và build index cần cleaned data. Vì vậy ở CP0, TV1 nên bắt tay code ngay trong khi TV2/TV3 làm việc đọc-hiểu/chuẩn bị (chưa có code để viết song song) — đúng như lịch CP0 ở Mục 4 đã xếp.
+
 ## 2. Nguyên tắc xuyên suốt — đọc một lần, áp dụng cả buổi
 
 - Chỉ chạy corruption flow **sau khi** baseline đã tạo đủ artifact.
