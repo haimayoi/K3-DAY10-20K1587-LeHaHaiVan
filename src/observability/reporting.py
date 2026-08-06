@@ -25,6 +25,21 @@ def _markdown_table(rows: list[tuple[str, Any]]) -> str:
     return "\n".join(lines)
 
 
+def _numeric_delta(later: Any, earlier: Any) -> float | int | None:
+    """Return a delta only for real numeric measurements, not status booleans."""
+    if isinstance(later, bool) or isinstance(earlier, bool):
+        return None
+    if isinstance(later, (int, float)) and isinstance(earlier, (int, float)):
+        return later - earlier
+    return None
+
+def _failed_checks(quality: dict[str, Any] | None) -> str:
+    if quality is None:
+        return "N/A"
+    failed = [name for name, check in quality.get("checks", {}).items() if not check.get("passed")]
+    return ", ".join(failed) if failed else "None"
+
+
 def generate_phase1_report(
     report_path: Path,
     source_summary: dict[str, Any],
@@ -70,6 +85,8 @@ def generate_corruption_report(
     repaired_quality: dict[str, Any],
     corrupted_freshness: dict[str, Any],
     repaired_freshness: dict[str, Any],
+    baseline_quality: dict[str, Any] | None = None,
+    baseline_freshness: dict[str, Any] | None = None,
 ) -> None:
     """Write an evidence-backed baseline/corrupted/repaired comparison report."""
     metric_rows = []
@@ -77,10 +94,18 @@ def generate_corruption_report(
         baseline = baseline_metrics.get(name)
         corrupted = corrupted_metrics.get(name)
         repaired = repaired_metrics.get(name)
-        delta = corrupted - baseline if isinstance(corrupted, (int, float)) and isinstance(baseline, (int, float)) else None
-        recovery = repaired - corrupted if isinstance(repaired, (int, float)) and isinstance(corrupted, (int, float)) else None
-        metric_rows.append((name, baseline, corrupted, repaired, delta, recovery))
-
+        metric_rows.append((name, baseline, corrupted, repaired, _numeric_delta(corrupted, baseline), _numeric_delta(repaired, corrupted)))
+    baseline_quality = baseline_quality or {}
+    baseline_freshness = baseline_freshness or {}
+    signal_rows = [
+        ("Quality passed", baseline_quality.get("passed"), corrupted_quality.get("passed"), repaired_quality.get("passed")),
+        ("Failed quality checks", _failed_checks(baseline_quality), _failed_checks(corrupted_quality), _failed_checks(repaired_quality)),
+        ("Row count", baseline_quality.get("row_count"), corrupted_quality.get("row_count"), repaired_quality.get("row_count")),
+        ("Fresh", baseline_freshness.get("is_fresh"), corrupted_freshness.get("is_fresh"), repaired_freshness.get("is_fresh")),
+        ("Stale rows", baseline_freshness.get("stale_rows"), corrupted_freshness.get("stale_rows"), repaired_freshness.get("stale_rows")),
+        ("Missing published dates", baseline_freshness.get("missing_published"), corrupted_freshness.get("missing_published"), repaired_freshness.get("missing_published")),
+        ("Invalid age days", baseline_freshness.get("invalid_age_days"), corrupted_freshness.get("invalid_age_days"), repaired_freshness.get("invalid_age_days")),
+    ]
     lines = [
         "# Corruption and Repair Comparison",
         "## Evaluation Metrics",
@@ -91,17 +116,18 @@ def generate_corruption_report(
         f"| {name} | {_display(baseline)} | {_display(corrupted)} | {_display(repaired)} | {_display(delta)} | {_display(recovery)} |"
         for name, baseline, corrupted, repaired, delta, recovery in metric_rows
     )
+    lines.extend([
+        "",
+        "## Data Quality and Freshness",
+        "| Signal | Baseline | Corrupted | Repaired | Corrupted - Baseline | Repaired - Corrupted |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ])
     lines.extend(
-        [
-            "",
-            "## Data Quality and Freshness",
-            "| Signal | Corrupted | Repaired |",
-            "| --- | --- | --- |",
-            f"| Quality passed | {_display(corrupted_quality.get('passed'))} | {_display(repaired_quality.get('passed'))} |",
-            f"| Fresh | {_display(corrupted_freshness.get('is_fresh'))} | {_display(repaired_freshness.get('is_fresh'))} |",
-            f"| Stale rows | {_display(corrupted_freshness.get('stale_rows'))} | {_display(repaired_freshness.get('stale_rows'))} |",
-            "",
-            "All comparisons use the same fixed evaluation set. Interpret recovery only from the values above and their linked artifacts.",
-        ]
+        f"| {name} | {_display(baseline)} | {_display(corrupted)} | {_display(repaired)} | {_display(_numeric_delta(corrupted, baseline))} | {_display(_numeric_delta(repaired, corrupted))} |"
+        for name, baseline, corrupted, repaired in signal_rows
     )
+    lines.extend([
+        "",
+        "All comparisons use the same fixed evaluation set. Interpret recovery only from the values above and their linked artifacts.",
+    ])
     write_text(Path(report_path), "\n".join(lines) + "\n")
