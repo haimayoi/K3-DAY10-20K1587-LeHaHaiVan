@@ -1,0 +1,110 @@
+[
+  {
+    "id": "10-1007-s10278-026-02086-9-summary",
+    "question_type": "summary",
+    "question": "What is the main idea of 'JADE-Plus: A Multimodal Agentic Retrieval-Augmented Generation Large Language Framework for Diagnostic Support in Jawbone Lesions: Development and Technical Validation Study'?",
+    "ground_truth": "Abstract Diagnosing jawbone lesions in oral and maxillofacial radiology remains challenging due to overlapping radiological features and the need for integrated clinical reasoning.",
+    "ground_truth_doc_ids": [
+      "10-1007-s10278-026-02086-9"
+    ]
+  },
+  {
+    "id": "10-1007-s10278-026-02086-9-date",
+    "question_type": "date",
+    "question": "When was 'JADE-Plus: A Multimodal Agentic Retrieval-Augmented Generation Large Language Framework for Diagnostic Support in Jawbone Lesions: Development and Technical Validation Study' published on?",
+    "ground_truth": "2026-07-13",
+    "ground_truth_doc_ids": [
+      "10-1007-s10278-026-02086-9"
+    ]
+  },
+  {
+    "id": "10-1007-s10278-026-02086-9-authors",
+    "question_type": "authors",
+    "question": "Who authored 'JADE-Plus: A Multimodal Agentic Retrieval-Augmented Generation Large Language Framework for Diagnostic Support in Jawbone Lesions: Development and Technical Validation Study'?",
+    "ground_truth": "Soroush Baseri Saadi, Jonas Ver Berne, Rocharles Cavalcante Fontenele, Peter Claes, Reinhilde Jacobs",
+    "ground_truth_doc_ids": [
+      "10-1007-s10278-026-02086-9"
+    ]
+  },
+  {
+    "id": "10-1007-s10278-026-02086-9-categories",
+    "question_type": "categories",
+    "question": "What categories does 'JADE-Plus: A Multimodal Agentic Retrieval-Augmented Generation Large Language Framework for Diagnostic Support in Jawbone Lesions: Development and Technical Validation Study' belong to?",
+    "ground_truth": "Journal of Imaging Informatics in Medicine",
+    "ground_truth_doc_ids": [
+      "10-1007-s10278-026-02086-9"
+    ]
+  },
+  {
+    "id": "10-1093-sleep-zsag091-0346-summary",
+    "question_type": "summary",
+    "question": "What is the main idea of '0346 Retrieval Augmented Generation Improves Large Language Model Performance in Sleep Medicine'?",
+    "ground_truth": "Abstract Introduction While Large Language Models (LLMs) offer generative capabilities, generic models often lack domain-specific grounding, leading to hallucinations in high-stakes contexts.",
+    "ground_truth_doc_ids": [
+      "10-1093-sleep-zsag091-0346"
+    ]
+  },
+  {
+    "id": "10-1093-sleep-zsag091-0346-date",
+    "question_type": "date",
+    "question": "When was '0346 Retrieval Augmented Generation Improves Large Language Model Performance in Sleep Medicine' published on?",
+    "ground_truth": "2026-05-01",
+    "ground_truth_doc_ids": [
+      "10-1093-sleep-zsag091-0346"
+    ]
+  },
+  {
+    "id": "10-1093-sleep-zsag091-0346-authors",
+    "question_type": "authors",
+    "question": "Who authored '0346 Retrieval Augmented Generation Improves Large Language Model Performance in Sleep Medicine'?",
+    "ground_truth": "Joseph Cheung, Pengze Li, Anshum Patel, SaiKrishna Vallamchetla, Het Contractor, Hayden Heninger, Cui Tao",
+    "ground_truth_doc_ids": [
+      "10-1093-sleep-zsag091-0346"
+    ]
+  },
+  {
+    "id": "10-1093-sleep-zsag091-0346-categories",
+    "question_type": "categories",
+    "question": "What categories does '0346 Retrieval Augmented Generation Improves Large Language Model Performance in Sleep Medicine' belong to?",
+    "ground_truth": "SLEEPJ",
+    "ground_truth_doc_ids": [
+      "10-1093-sleep-zsag091-0346"
+    ]
+  },
+  {
+    "id": "10-1111-exsy-70341-summary",
+    "question_type": "summary",
+    "question": "What is the main idea of 'Hi\u2010 <scp>RAG</scp> : A Hierarchical Retrieval\u2010Augmented Generation Framework for Scalable and Generalisable Tool Selection in Large Language Model Agents'?",
+    "ground_truth": "ABSTRACT As tool repositories for Large Language Model (LLM) agents grow from dozens to hundreds of endpoints, flat retrieval paradigms that treat the repository as an unstructured list suffer from context overload, cross\u2010domain semantic collision and degraded selection accuracy.",
+    "ground_truth_doc_ids": [
+      "10-1111-exsy-70341"
+    ]
+  },
+  {
+    "id": "10-1111-exsy-70341-date",
+    "question_type": "date",
+    "question": "When was 'Hi\u2010 <scp>RAG</scp> : A Hierarchical Retrieval\u2010Augmented Generation Framework for Scalable and Generalisable Tool Selection in Large Language Model Agents' published on?",
+    "ground_truth": "2026-06-30",
+    "ground_truth_doc_ids": [
+      "10-1111-exsy-70341"
+    ]
+  },
+  {
+    "id": "10-1111-exsy-70341-authors",
+    "question_type": "authors",
+    "question": "Who authored 'Hi\u2010 <scp>RAG</scp> : A Hierarchical Retrieval\u2010Augmented Generation Framework for Scalable and Generalisable Tool Selection in Large Language Model Agents'?",
+    "ground_truth": "Wei Tian, Yuhao Zhou",
+    "ground_truth_doc_ids": [
+      "10-1111-exsy-70341"
+    ]
+  },
+  {
+    "id": "10-1111-exsy-70341-categories",
+    "question_type": "categories",
+    "question": "What categories does 'Hi\u2010 <scp>RAG</scp> : A Hierarchical Retrieval\u2010Augmented Generation Framework for Scalable and Generalisable Tool Selection in Large Language Model Agents' belong to?",
+    "ground_truth": "Expert Systems",
+    "ground_truth_doc_ids": [
+      "10-1111-exsy-70341"
+    ]
+  }
+]
