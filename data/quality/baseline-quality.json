@@ -1,0 +1,36 @@
+{
+  "report_name": "baseline_quality",
+  "row_count": 24,
+  "checks": {
+    "row_count": {
+      "passed": true,
+      "value": 24,
+      "minimum": 1
+    },
+    "paper_id_not_null": {
+      "passed": true,
+      "missing": 0
+    },
+    "paper_id_unique": {
+      "passed": true,
+      "duplicate_rows": 0
+    },
+    "title_not_null": {
+      "passed": true,
+      "missing": 0
+    },
+    "summary_not_null": {
+      "passed": true,
+      "missing": 0
+    },
+    "duplicate_rows": {
+      "passed": true,
+      "duplicate_rows": 0
+    },
+    "age_days_valid": {
+      "passed": true,
+      "invalid": 0
+    }
+  },
+  "passed": true
+}
