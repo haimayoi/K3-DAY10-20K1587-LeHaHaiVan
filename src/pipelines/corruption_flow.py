@@ -553,15 +553,19 @@ def main() -> None:
     baseline_metrics = read_json(settings.paths.baseline_metrics)
     corrupted_metrics = read_json(settings.paths.corrupted_metrics)
     repaired_metrics = read_json(settings.paths.repaired_metrics)
+    baseline_quality = read_json(settings.paths.quality_dir / "baseline.json")
     corrupted_quality = read_json(settings.paths.quality_dir / "corrupted.json")
+    baseline_freshness = read_json(settings.paths.freshness_report)
     corrupted_freshness = read_json(corrupted_freshness_path)
     generate_corruption_report(
         settings.paths.comparison_report,
         baseline_metrics,
         corrupted_metrics,
         repaired_metrics,
+        baseline_quality,
         corrupted_quality,
         repaired_quality,
+        baseline_freshness,
         corrupted_freshness,
         repaired_freshness,
     )
