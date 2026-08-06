@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "source_count": 24,
+  "final_count": 24,
+  "corruption_types": [
+    "drop_latest_records",
+    "blank_summary",
+    "add_summary_noise",
+    "truncate_title",
+    "make_publication_stale",
+    "add_duplicate_rows"
+  ],
+  "events": [
+    {
+      "corruption_type": "drop_latest_records",
+      "record_ids": [
+        "10-2118-234689-pa",
+        "10-1007-s10278-026-02086-9"
+      ],
+      "parameters": {
+        "count": 2,
+        "order_by": "published",
+        "ascending": false
+      },
+      "before_count": 24,
+      "after_count": 22,
+      "changes": [
+        {
+          "paper_id": "10-2118-234689-pa",
+          "published": "2026-08-01"
+        },
+        {
+          "paper_id": "10-1007-s10278-026-02086-9",
+          "published": "2026-07-13"
+        }
+      ]
+    },
+    {
+      "corruption_type": "blank_summary",
+      "record_ids": [
+        "10-1093-sleep-zsag091-0346",
+        "10-1111-exsy-70341"
+      ],
+      "parameters": {
+        "field": "summary",
+        "replacement": ""
+      },
+      "before_count": 22,
+      "after_count": 22,
+      "changes": [
+        {
+          "paper_id": "10-1093-sleep-zsag091-0346",
+          "before_summary_chars": 2491,
+          "after_summary_chars": 0
+        },
+        {
+          "paper_id": "10-1111-exsy-70341",
+          "before_summary_chars": 1527,
+          "after_summary_chars": 0
+        }
+      ]
+    },
+    {
+      "corruption_type": "add_summary_noise",
+      "record_ids": [
+        "10-20944-preprints202602-0996-v1",
+        "10-20944-preprints202604-0339-v1"
+      ],
+      "parameters": {
+        "field": "summary",
+        "prefix": "CORRUPTED NOISE: unrelated boilerplate alpha beta gamma."
+      },
+      "before_count": 22,
+      "after_count": 22,
+      "changes": [
+        {
+          "paper_id": "10-20944-preprints202602-0996-v1",
+          "before_summary_chars": 1713,
+          "after_summary_chars": 1770
+        },
+        {
+          "paper_id": "10-20944-preprints202604-0339-v1",
+          "before_summary_chars": 1687,
+          "after_summary_chars": 1744
+        }
+      ]
+    },
+    {
+      "corruption_type": "truncate_title",
+      "record_ids": [
+        "10-21079-11681-50309",
+        "10-21203-rs-3-rs-10012178-v1"
+      ],
+      "parameters": {
+        "field": "title",
+        "max_chars": 12
+      },
+      "before_count": 22,
+      "after_count": 22,
+      "changes": [
+        {
+          "paper_id": "10-21079-11681-50309",
+          "before": "Microsoft Azure artificial intelligence / machine learning hackathon for development of retrieval-augmented generation large language model",
+          "after": "Microsoft Az"
+        },
+        {
+          "paper_id": "10-21203-rs-3-rs-10012178-v1",
+          "before": "Retrieval-Augmented Generation (RAG), Generative AI, and Agentic AI Governance: An Integrated Enterprise Governance Prioritization Architecture",
+          "after": "Retrieval-Au"
+        }
+      ]
+    },
+    {
+      "corruption_type": "make_publication_stale",
+      "record_ids": [
+        "10-21203-rs-3-rs-10178277-v1",
+        "10-21203-rs-3-rs-9770645-v1"
+      ],
+      "parameters": {
+        "published": "2000-01-01",
+        "age_days": 10000
+      },
+      "before_count": 22,
+      "after_count": 22,
+      "changes": [
+        {
+          "paper_id": "10-21203-rs-3-rs-10178277-v1",
+          "before_published": "2026-07-10",
+          "after_published": "2000-01-01",
+          "before_age_days": 27,
+          "after_age_days": 10000
+        },
+        {
+          "paper_id": "10-21203-rs-3-rs-9770645-v1",
+          "before_published": "2026-05-22",
+          "after_published": "2000-01-01",
+          "before_age_days": 76,
+          "after_age_days": 10000
+        }
+      ]
+    },
+    {
+      "corruption_type": "add_duplicate_rows",
+      "record_ids": [
+        "10-1093-sleep-zsag091-0346",
+        "10-1111-exsy-70341"
+      ],
+      "parameters": {
+        "count": 2,
+        "duplicate_key": "paper_id"
+      },
+      "before_count": 22,
+      "after_count": 24,
+      "changes": [
+        {
+          "paper_id": "10-1093-sleep-zsag091-0346",
+          "copies_added": 1
+        },
+        {
+          "paper_id": "10-1111-exsy-70341",
+          "copies_added": 1
+        }
+      ]
+    }
+  ]
+}

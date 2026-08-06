@@ -80,6 +80,28 @@ class LocalEmbeddingIndex:
             return name_map[resolved_path]
         return safe_slug(embeddings_output_path.stem)
 
+    @staticmethod
+    def _manifest_persist_path(settings: Settings, persist_path: Path) -> str:
+        try:
+            return persist_path.resolve().relative_to(settings.paths.project_dir).as_posix()
+        except ValueError:
+            return str(persist_path.resolve())
+
+    @staticmethod
+    def _resolve_persist_path(settings: Settings, payload: dict[str, Any]) -> Path:
+        managed_collections = {
+            settings.baseline_collection_name,
+            settings.corrupted_collection_name,
+            settings.repaired_collection_name,
+        }
+        if payload["collection_name"] in managed_collections:
+            return settings.paths.chroma_dir
+
+        manifest_path = Path(payload["persist_path"])
+        if manifest_path.is_absolute():
+            return manifest_path
+        return settings.paths.project_dir / manifest_path
+
     @classmethod
     def build(
         cls,
@@ -116,7 +138,7 @@ class LocalEmbeddingIndex:
             {
                 "backend": "chroma",
                 "embedding_model": settings.embedding_model,
-                "persist_path": str(persist_path),
+                "persist_path": cls._manifest_persist_path(settings, persist_path),
                 "collection_name": collection_name,
                 "documents": documents,
             },
@@ -135,7 +157,7 @@ class LocalEmbeddingIndex:
             settings=settings,
             collection_name=payload["collection_name"],
             documents=payload["documents"],
-            persist_path=Path(payload["persist_path"]),
+            persist_path=cls._resolve_persist_path(settings, payload),
         )
 
     def search(self, query: str, top_k: int | None = None) -> list[SearchResult]:

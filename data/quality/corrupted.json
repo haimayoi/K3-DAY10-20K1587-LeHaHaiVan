@@ -1,0 +1,36 @@
+{
+  "report_name": "corrupted",
+  "row_count": 24,
+  "checks": {
+    "row_count": {
+      "passed": true,
+      "value": 24,
+      "minimum": 1
+    },
+    "paper_id_not_null": {
+      "passed": true,
+      "missing": 0
+    },
+    "paper_id_unique": {
+      "passed": false,
+      "duplicate_rows": 4
+    },
+    "title_not_null": {
+      "passed": true,
+      "missing": 0
+    },
+    "summary_not_null": {
+      "passed": false,
+      "missing": 4
+    },
+    "duplicate_rows": {
+      "passed": false,
+      "duplicate_rows": 2
+    },
+    "age_days_valid": {
+      "passed": true,
+      "invalid": 0
+    }
+  },
+  "passed": false
+}
