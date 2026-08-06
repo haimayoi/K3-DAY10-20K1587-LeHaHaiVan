@@ -1,0 +1,15 @@
+{
+  "repaired_metrics_exists": true,
+  "comparison_report_exists": true,
+  "baseline_collection_rows": 24,
+  "corrupted_collection_rows": 24,
+  "repaired_collection_rows": 24,
+  "report_path": "data\\reports\\corruption_report.md",
+  "lineage_path": "data\\results\\repair_lineage.json",
+  "secret_and_path_check": {
+    "tracked_env_files": [],
+    "potential_secret_files": [],
+    "hardcoded_absolute_path_files": [],
+    "tracked_files_scanned": 89
+  }
+}
