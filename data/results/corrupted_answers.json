@@ -23,9 +23,9 @@
     "retrieval_hit": false,
     "token_f1": 0.16949152542372883,
     "judge": {
-      "score": 1,
+      "score": 2,
       "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer discusses the limitations of Large Language Models in biomedical contexts but does not address the main idea of the study, which focuses on the challenges of diagnosing jawbone lesions and the need for integrated clinical reasoning."
     }
   },
   {
@@ -54,7 +54,7 @@
     "judge": {
       "score": 1,
       "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer is incorrect as it provides a publication date of 2026-03-15, while the reference answer states the correct date is 2026-07-13."
     }
   },
   {
@@ -83,7 +83,7 @@
     "judge": {
       "score": 1,
       "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer provides a name (Eason Ni) that does not match any of the authors listed in the reference answer, which includes Soroush Baseri Saadi, Jonas Ver Berne, Rocharles Cavalcante Fontenele, Peter Claes, and Reinhilde Jacobs."
     }
   },
   {
@@ -112,7 +112,7 @@
     "judge": {
       "score": 1,
       "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer 'SLEEPJ' does not match the reference answer 'Journal of Imaging Informatics in Medicine', indicating a significant error in identifying the correct category."
     }
   },
   {
@@ -137,9 +137,9 @@
     "retrieval_hit": true,
     "token_f1": 0.0,
     "judge": {
-      "score": 1,
-      "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "score": 4,
+      "correct": true,
+      "reasoning": "The model answer captures the essence of the reference answer by highlighting the limitations of generic LLMs in high-stakes contexts, specifically in sleep medicine. However, it could be more explicit about the context of sleep medicine to fully align with the reference."
     }
   },
   {
@@ -166,7 +166,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer matches the reference answer exactly, indicating that it is materially correct."
     }
   },
   {
@@ -193,7 +193,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer matches the reference answer exactly, listing all authors correctly."
     }
   },
   {
@@ -220,7 +220,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer matches the reference answer exactly, indicating it is materially correct."
     }
   },
   {
@@ -245,9 +245,9 @@
     "retrieval_hit": true,
     "token_f1": 0.0,
     "judge": {
-      "score": 1,
+      "score": 3,
       "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer does not provide a clear summary of the main idea of the paper, focusing instead on the issues with flat retrieval paradigms without explicitly stating the hierarchical retrieval-augmented generation framework's purpose or significance."
     }
   },
   {
@@ -274,7 +274,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer matches the reference answer exactly, indicating that it is materially correct."
     }
   },
   {
@@ -301,7 +301,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer correctly identifies the authors of the work as Wei Tian and Yuhao Zhou, matching the reference answer exactly."
     }
   },
   {
@@ -328,7 +328,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "reasoning": "The model answer correctly identifies the category 'Expert Systems' as belonging to the framework described in the question, matching the reference answer perfectly."
     }
   }
 ]

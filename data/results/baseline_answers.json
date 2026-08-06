@@ -141,7 +141,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "The model answer is identical to the reference answer, accurately capturing the main idea regarding the limitations of generic LLMs in high-stakes contexts like sleep medicine."
+      "reasoning": "The model answer is identical to the reference answer, accurately capturing the main idea regarding the limitations of generic LLMs in high-stakes contexts."
     }
   },
   {
@@ -315,7 +315,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "The model answer correctly identifies the authors of the work as Wei Tian and Yuhao Zhou, matching the reference answer exactly."
+      "reasoning": "The model answer correctly identifies the authors of the paper as Wei Tian and Yuhao Zhou, matching the reference answer exactly."
     }
   },
   {
